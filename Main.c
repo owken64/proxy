@@ -1,7 +1,9 @@
 #include "Const.h"
 #include "Network.h"
+#include <stdio.h>
+#include <unistd.h>
 
-int main(void){
+void mainLoop(void){
 
 	// 初期処理
 	NetworkInit();
@@ -13,6 +15,14 @@ int main(void){
 
 	// 終了処理
 	NetworkClose();
-	
-	return 0;
+}
+
+int main(void) {
+    //ここで子プロセスを生成し親は終了
+    if(daemon(0, 0) == 0) {
+        mainLoop();
+    } else {
+        printf("error\n");
+    }
+    return 0;
 }
