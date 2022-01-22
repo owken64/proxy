@@ -17,8 +17,8 @@ int ConnectMsgsv();
 int ConnectLoginsv();
 void CloseClient();
 void CloseGamesv();
-void ConnectMsgsv();
-void ConnectLoginsv();
+void CloseMsgsv();
+void CloseLoginsv();
 
 int NetworkInit(){
 	
@@ -138,7 +138,7 @@ int ConnectLoginsv(){
 void CloseClient(){
 	for (int i = 0; i < MAX_CONNECTION; i++){
 		if (availableSockClient[i]) {
-			close(sockClient);
+			close(sockClient[i]);
 			availableSockClient[i] = FALSE;
 		}
 	}
