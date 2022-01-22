@@ -1,5 +1,13 @@
 #include "Network.h"
 #include "Parameter.h"
+#include "Const.h"
+
+#include <stdio.h> //printf(), fprintf(), perror()
+#include <sys/socket.h> //socket(), bind(), accept(), listen()
+#include <arpa/inet.h> // struct sockaddr_in, struct sockaddr, inet_ntoa()
+#include <stdlib.h> //atoi(), exit(), EXIT_FAILURE, EXIT_SUCCESS
+#include <string.h> //memset()
+#include <unistd.h> //close()
 
 #define QUEUELIMIT 5
 
@@ -17,7 +25,7 @@ int NetworkInit(){
 	// パラメータの初期化
 	nConnection = 0;
 	for (int i = 0; i < MAX_CONNECTION; i++){
-	  availableSockClient[i] = false;
+	  availableSockClient[i] = FALSE;
 	}
 	
 	// サーバーへの接続
@@ -56,9 +64,9 @@ int ConnectClient(){
     }
 
     memset(&sockAddrServer, 0, sizeof(sockAddrServer));
-    servSockAddr.sin_family      = AF_INET;
-    servSockAddr.sin_addr.s_addr = htonl(INADDR_ANY);
-    servSockAddr.sin_port        = htons(PORT_CLIENT);
+    sockAddrServer.sin_family      = AF_INET;
+    sockAddrServer.sin_addr.s_addr = htonl(INADDR_ANY);
+    sockAddrServer.sin_port        = htons(PORT_CLIENT);
 
     if (bind(sockServer, (struct sockaddr *) &sockAddrServer, sizeof(sockAddrServer) ) < 0 ) {
         perror("bind() failed.");
@@ -81,9 +89,9 @@ int ConnectGamesv(){
     }
  
     // 送信先アドレスとポート番号を設定する
-    addr.sin_family = AF_INET;
-    addr.sin_port = htons(PORT_GAMESV);
-    addr.sin_addr.s_addr = inet_addr(IP_GAMESV);
+    sockAddrGamesv.sin_family = AF_INET;
+    sockAddrGamesv.sin_port = htons(PORT_GAMESV);
+    sockAddrGamesv.sin_addr.s_addr = inet_addr(IP_GAMESV);
  
     // サーバ接続（TCP の場合は、接続を確立する必要がある）
     connect(sockGamesv, (struct sockaddr *)&sockAddrGamesv, sizeof(struct sockaddr_in));
@@ -99,9 +107,9 @@ int ConnectMsgsv(){
     }
  
     // 送信先アドレスとポート番号を設定する
-    addr.sin_family = AF_INET;
-    addr.sin_port = htons(PORT_MSGSV);
-    addr.sin_addr.s_addr = inet_addr(IP_MSGSV);
+    sockAddrMsgsv.sin_family = AF_INET;
+    sockAddrMsgsv.sin_port = htons(PORT_MSGSV);
+    sockAddrMsgsv.sin_addr.s_addr = inet_addr(IP_MSGSV);
  
     // サーバ接続（TCP の場合は、接続を確立する必要がある）
     connect(sockMsgsv, (struct sockaddr *)&sockAddrMsgsv, sizeof(struct sockaddr_in));
@@ -117,9 +125,9 @@ int ConnectLoginsv(){
     }
  
     // 送信先アドレスとポート番号を設定する
-    addr.sin_family = AF_INET;
-    addr.sin_port = htons(PORT_MSGSV);
-    addr.sin_addr.s_addr = inet_addr(IP_MSGSV);
+    sockAddrLoginsv.sin_family = AF_INET;
+    sockAddrLoginsv.sin_port = htons(PORT_MSGSV);
+    sockAddrLoginsv.sin_addr.s_addr = inet_addr(IP_MSGSV);
  
     // サーバ接続（TCP の場合は、接続を確立する必要がある）
     connect(sockLoginsv, (struct sockaddr *)&sockAddrLoginsv, sizeof(struct sockaddr_in));
@@ -131,7 +139,7 @@ void CloseClient(){
 	for (int i = 0; i < MAX_CONNECTION; i++){
 		if (availableSockClient[i]) {
 			close(sockClient);
-			availableSockClient[i] = false;
+			availableSockClient[i] = FALSE;
 		}
 	}
 }
@@ -140,10 +148,10 @@ void CloseGamesv(){
 	close(sockGamesv);
 }
 
-void ConnectMsgsv(){
+void CloseMsgsv(){
 	close(sockMsgsv);
 }
 
-void ConnectLoginsv(){
+void CloseaLoginsv(){
 	close(sockLoginsv);
 }

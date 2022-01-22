@@ -9,7 +9,7 @@ extern int sockServer;
 extern struct sockaddr_in sockAddrServer;
 extern int sockClient[MAX_CONNECTION];
 extern struct sockaddr_in sockAddrClient[MAX_CONNECTION];
-extern bool availableSockClient[MAX_CONNECTION];
+extern char availableSockClient[MAX_CONNECTION];
 extern int nConnection; // 現在の接続数
 
 // To Server

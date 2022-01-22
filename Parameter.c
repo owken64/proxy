@@ -8,7 +8,7 @@ int sockServer;
 struct sockaddr_in sockAddrServer;
 int sockClient[MAX_CONNECTION];
 struct sockaddr_in sockAddrClient[MAX_CONNECTION];
-bool availableSockClient[MAX_CONNECTION];
+char availableSockClient[MAX_CONNECTION];
 int nConnection; // 現在の接続数
 
 // To Server

@@ -1,3 +1,4 @@
+#include "Const.h"
 #include "Network.h"
 
 int main(void){
@@ -6,7 +7,7 @@ int main(void){
 	NetworkInit();
 	
 	// ループ
-	while (true){
+	while (TRUE){
 	
 	}
 
