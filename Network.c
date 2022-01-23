@@ -1,6 +1,6 @@
 #include "Network.h"
 #include "Parameter.h"
-#include "Const.h"
+#include "Bool.h"
 
 #include <stdio.h> //printf(), fprintf(), perror()
 #include <sys/socket.h> //socket(), bind(), accept(), listen()

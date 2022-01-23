@@ -1,4 +1,4 @@
-#include "Const.h"
+#include "Bool.h"
 #include "Network.h"
 #include <stdio.h>
 #include <unistd.h>
