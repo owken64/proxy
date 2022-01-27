@@ -25,7 +25,6 @@ void CloseLoginsv();
 int NetworkInit(){
 	
 	// パラメータの初期化
-	nConnection = 0;
 	for (int i = 0; i < MAX_CONNECTION; i++){
 	  availableSockClient[i] = FALSE;
 	  flgMsgRecvClient[i] = FALSE;

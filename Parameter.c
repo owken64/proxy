@@ -10,7 +10,7 @@ int sockServer;
 struct sockaddr_in sockAddrServer;
 int sockClient[MAX_CONNECTION];
 struct sockaddr_in sockAddrClient[MAX_CONNECTION];
-char availableSockClient[MAX_CONNECTION];
+BOOL availableSockClient[MAX_CONNECTION];
 
 // To Server
 int sockGamesv;
