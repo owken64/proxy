@@ -12,3 +12,5 @@
 #define PORT_LOGINSV 60003
 
 #define MAX_CONNECTION 100 // 同時接続数
+
+#define MSG_LENGTH 256

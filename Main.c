@@ -11,6 +11,8 @@ void mainLoop(void){
 	// ループ
 	while (TRUE){
 	
+		NetworkReceive();
+	
 	}
 
 	// 終了処理
